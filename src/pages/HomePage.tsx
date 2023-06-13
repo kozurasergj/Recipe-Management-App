@@ -13,7 +13,8 @@ const HomePage = () => {
     if (!isAuth) {
       navigate('/login', { replace: true });
     }
-  }, [isAuth]);
+  }, [isAuth, navigate]);
+
 
 
   return (
