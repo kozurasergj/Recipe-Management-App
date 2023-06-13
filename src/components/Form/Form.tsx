@@ -1,17 +1,24 @@
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 import { IFormProps } from '../../interfaces';
 
 const Form = ({ title, handleClick }: IFormProps) => {
-  const [email, setUmail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleClick(email, password);
+    setEmail('');
+    setPassword('');
+  };
+
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <input
         type="email"
         placeholder="email"
         value={email}
-        onChange={(e) => setUmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
@@ -24,7 +31,7 @@ const Form = ({ title, handleClick }: IFormProps) => {
       >
         {title}
       </button>
-    </div>
+    </form>
   )
 }
 
