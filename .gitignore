@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 .env
+// "default": "recipe-management-app-40ee5"
 
 # Editor directories and files
 .vscode/*

@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import Form from '../Form/Form';
-import { setUser } from '../../store/slices/userSlice';
+import FormUser from './FormUser';
+import { setUser } from '../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom'
-import { useAppDispath } from '../../hooks/useRedux';
+import { useAppDispath } from '../hooks/useRedux';
 
 const Login = () => {
   const dispatch = useAppDispath();
@@ -22,13 +22,13 @@ const Login = () => {
         navigate('/', { replace: true });
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.message)
       });
   }
 
   return (
     <div>
-      <Form
+      <FormUser
         title={"Sign In"}
         handleClick={handleLogin}
       />

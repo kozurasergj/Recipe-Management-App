@@ -1,8 +1,8 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import Form from '../Form/Form';
-import { setUser } from '../../store/slices/userSlice';
+import FormUser from './FormUser';
+import { setUser } from '../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom'
-import { useAppDispath } from '../../hooks/useRedux';
+import { useAppDispath } from '../hooks/useRedux';
 
 const SignUp = () => {
   const dispatch = useAppDispath();
@@ -22,15 +22,13 @@ const SignUp = () => {
         navigate('/', { replace: true });
       })
       .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        console.log(error)
+        alert(error.message)
       });
   }
 
   return (
     <div>
-      <Form
+      <FormUser
         title={"Sign Up"}
         handleClick={handleRegistr}
       />
