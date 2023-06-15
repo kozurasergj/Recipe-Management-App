@@ -2,9 +2,8 @@ export interface IFormProps {
   title: string;
   handleClick: (email: string, password: string) => void;
 }
-
 export interface IRecipe {
-  id: number;
+  id: string;
   title: string;
   image: string;
   ingredients: string[];
@@ -12,4 +11,13 @@ export interface IRecipe {
 }
 export interface IRecipes {
   recipes: IRecipe[];
+}
+export interface IRecipeProps {
+  recipe: {
+    id: string;
+    title: string;
+    recipe: string;
+    ingredients: string[];
+    image: string;
+  };
 }

@@ -1,11 +1,11 @@
 import Wrapper from '../components/Wrapper';
 
-const MyRecipePage = () => {
+const CreatePage = () => {
   return (
     <Wrapper>
-      <h2>My Recipe Page</h2>
+      <h2>Create  Page</h2>
     </Wrapper>
   );
 };
 
-export default MyRecipePage;
+export default CreatePage;

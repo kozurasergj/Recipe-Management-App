@@ -2,10 +2,10 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import FormUser from './FormUser';
 import { setUser } from '../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom'
-import { useAppDispath } from '../hooks/useRedux';
+import { useAppDispatch } from '../hooks/useRedux';
 
 const SignUp = () => {
-  const dispatch = useAppDispath();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleRegistr = (email: string, password: string) => {
@@ -19,6 +19,7 @@ const SignUp = () => {
           token: user.refreshToken,
           id: user.uid
         }))
+        alert("You have successfully SIGNUP TO FIREBASE!")
         navigate('/', { replace: true });
       })
       .catch((error) => {

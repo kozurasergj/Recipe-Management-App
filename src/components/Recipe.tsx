@@ -1,61 +1,77 @@
-import React, { useState } from 'react';
-import { Col } from 'antd';
-import { HeartOutlined, HeartFilled } from '@ant-design/icons';
-import type { CollapseProps } from 'antd';
-import { Collapse } from 'antd';
-import { IRecipe } from '../interfaces';
+import { HeartFilled } from '@ant-design/icons';
+import { Col, Collapse, CollapseProps } from 'antd';
 import cn from 'classnames';
+import { setFavorite } from '../store/slices/recipesSlice';
+import { IRecipeProps } from '../interfaces';
+import { useAppSelector, useAppDispatch } from '../hooks/useRedux';
 
-const Recipe = ({ recipe }: any) => {
-  const [isLiked, setIsLiked] = useState(false);
+const Recipe = ({ recipe }: IRecipeProps) => {
+  const dispatch = useAppDispatch();
+
+  const favorite = useAppSelector((state) => state.allRecipes.favorite);
+  const isFavorite = favorite.some((favoriteItem) => favoriteItem.id === recipe.id);
 
   const handleLike = () => {
-    setIsLiked(!isLiked);
+    dispatch(setFavorite({ id: recipe.id }));
   };
 
   const items: CollapseProps['items'] = [
     {
       key: '1',
       label: 'Recipe',
-      children:
-        <p>
-          {recipe.recipe}
-        </p>
+      children: <p>{recipe.recipe}</p>
     },
     {
       key: '2',
       label: 'Ingredients',
-      children:
+      children: (
         <>
           {recipe.ingredients.map((ingredient: string, index: number) => (
             <p key={index}>{ingredient}</p>
           ))}
         </>
+      )
     }
   ];
 
-
   return (
-    <>
-      <Col key={recipe.id} span={7}
+    <Col
+      key={recipe.id}
+      span={7}
+      onClick={handleLike}
+      style={{
+        boxShadow: '4px 4px 15px rgba(56, 56, 56, 0.6)'
+      }}
+    >
+      <div
         style={{
-          boxShadow: '4px 4px 15px rgba(56, 56, 56, 0.6)'
+          padding: '20px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '30px'
         }}
+        className={cn(isFavorite && 'favorite')}
       >
-        <div
+        <h2 style={{ textAlign: 'center' }}>{recipe.title}</h2>
+        <button
           style={{
-            padding: '20px',  display: 'flex', flexDirection: 'column', gap: '30px'}}
-          className={cn(isLiked && 'favorite')}
+            border: 'none',
+            position: 'absolute',
+            top: '-10px',
+            left: '-10px',
+            backgroundColor: 'transparent'
+          }}
         >
-          <h2 style={{ textAlign: 'center' }}>{recipe.title}</h2>
-          <button onClick={handleLike} style={{ border: 'none', position: 'absolute', top: '-10px', left: '-10px', backgroundColor: 'transparent' }}>
-            {isLiked ? <HeartFilled className='heard-checked' style={{ color: 'red', fontSize: '30px' }} /> : <HeartFilled style={{ color: 'rgb(21, 9, 70)', fontSize: '30px' }} />}
-          </button>
-          <img src={recipe.image} alt="dish" className='img' />
-          <Collapse items={items} />
-        </div>
-      </Col>
-    </>
+          {isFavorite ? (
+            <HeartFilled className='heart-checked' style={{ color: 'red', fontSize: '40px' }} />
+          ) : (
+            <HeartFilled style={{ color: 'rgb(21, 9, 70)', fontSize: '30px' }} />
+          )}
+        </button>
+        <img src={recipe.image} alt='dish' className='img' />
+        <Collapse items={items} />
+      </div>
+    </Col>
   );
 };
 

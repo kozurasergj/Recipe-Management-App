@@ -3,10 +3,10 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import FormUser from './FormUser';
 import { setUser } from '../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom'
-import { useAppDispath } from '../hooks/useRedux';
+import { useAppDispatch } from '../hooks/useRedux';
 
 const Login = () => {
-  const dispatch = useAppDispath();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleLogin = (email: string, password: string) => {
@@ -19,7 +19,8 @@ const Login = () => {
           token: user.refreshToken,
           id: user.uid
         }))
-        navigate('/', { replace: true });
+        alert("You have successfully LOGIN TO FIREBASE!")
+        navigate('/home', { replace: true });
       })
       .catch((error) => {
         alert(error.message)

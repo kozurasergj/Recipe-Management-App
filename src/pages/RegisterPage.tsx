@@ -7,7 +7,7 @@ const RegisterPage = () => {
     <Wrapper>
       <h2>Registe</h2>
       <SignUp />
-      Alredy have an acount <Link to="/login" >login</Link >
+      Alredy have an acount <Link to="/" >login</Link >
     </Wrapper>
   )
 }

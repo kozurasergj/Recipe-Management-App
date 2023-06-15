@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Breadcrumb, Layout, Menu, MenuProps, theme } from 'antd';
-
+import { Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom'
 const { Header, Content, Footer } = Layout;
 
 interface IWrapper {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const Wrapper: React.FC<IWrapper> = ({ children }) => {
@@ -36,14 +37,12 @@ const Wrapper: React.FC<IWrapper> = ({ children }) => {
 
   return (
     <Layout className="layout" style={{ minHeight: '100vh' }}>
-      <Header style={{ display: 'flex', alignItems: 'center' }}>
-        <div className="demo-logo" />
-        <Menu onClick={onClick}  mode="horizontal" items={items} />
+      <Header style={{ display: 'flex', alignItems: 'center',justifyContent:'center',gap:'40px' }}>
+        <Link to="/home" >Home</Link >
+        <Link to="/favorite" >Favorite</Link >
+        <Link to="/create" >Create</Link > 
       </Header>
       <Content style={{ padding: '0 50px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-        </Breadcrumb>
         <div className="site-layout-content" style={{ background: colorBgContainer }}>
           {children}
         </div>

@@ -7,7 +7,7 @@ const FormUser = ({ title, handleClick }: IFormProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onFinishFailed = (e: any) => {
+  const onFinishFailed = () => {
     handleClick(email, password);
     setEmail('');
     setPassword('');
@@ -20,7 +20,7 @@ const FormUser = ({ title, handleClick }: IFormProps) => {
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: '900px' }}
       initialValues={{ remember: true }}
-      onFinish={(e) => onFinishFailed(e)}
+      onFinish={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item
