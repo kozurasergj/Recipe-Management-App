@@ -24,7 +24,7 @@ const HomePage = () => {
   return (
     <>
       <Wrapper>
-        <h2 style={{ textAlign: 'center' }}>Home</h2>
+        <h2 style={{ textAlign: 'center',marginBottom:'40px' }}>Home</h2>
         <Row justify="space-between" align="top" style={{ gap: '40px', padding: '20px' }}>
           {recipes?.map((recipe: IRecipe) =>
             <Recipe recipe={recipe} />

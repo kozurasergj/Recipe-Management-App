@@ -1,7 +1,7 @@
 import { HeartFilled } from '@ant-design/icons';
 import { Col, Collapse, CollapseProps } from 'antd';
 import cn from 'classnames';
-import { setFavorite } from '../store/slices/recipesSlice';
+import { setFavorite, removeFavorite } from '../store/slices/recipesSlice';
 import { IRecipeProps } from '../interfaces';
 import { useAppSelector, useAppDispatch } from '../hooks/useRedux';
 
@@ -12,7 +12,11 @@ const Recipe = ({ recipe }: IRecipeProps) => {
   const isFavorite = favorite.some((favoriteItem) => favoriteItem.id === recipe.id);
 
   const handleLike = () => {
-    dispatch(setFavorite({ id: recipe.id }));
+    if (isFavorite) {
+      dispatch(removeFavorite({ id: recipe.id }));
+    } else {
+      dispatch(setFavorite({ id: recipe.id }));
+    }
   };
 
   const items: CollapseProps['items'] = [
@@ -37,10 +41,14 @@ const Recipe = ({ recipe }: IRecipeProps) => {
   return (
     <Col
       key={recipe.id}
-      span={7}
-      onClick={handleLike}
+      xs={24} // Takes full width on extra small screens
+      sm={20} // Takes half width on small screens
+      md={10} // Takes one-third width on medium screens
+      lg={7} // Takes one-fourth width on large screens
+      xl={7} 
+
       style={{
-        boxShadow: '4px 4px 15px rgba(56, 56, 56, 0.6)'
+        boxShadow: '4px 4px 15px rgba(56, 56, 56, 0.6)',
       }}
     >
       <div
@@ -50,7 +58,7 @@ const Recipe = ({ recipe }: IRecipeProps) => {
           flexDirection: 'column',
           gap: '30px'
         }}
-        className={cn(isFavorite && 'favorite')}
+        className={cn('card',isFavorite && 'favorite')}
       >
         <h2 style={{ textAlign: 'center' }}>{recipe.title}</h2>
         <button
@@ -61,6 +69,7 @@ const Recipe = ({ recipe }: IRecipeProps) => {
             left: '-10px',
             backgroundColor: 'transparent'
           }}
+          onClick={handleLike}
         >
           {isFavorite ? (
             <HeartFilled className='heart-checked' style={{ color: 'red', fontSize: '40px' }} />
@@ -69,7 +78,8 @@ const Recipe = ({ recipe }: IRecipeProps) => {
           )}
         </button>
         <img src={recipe.image} alt='dish' className='img' />
-        <Collapse items={items} />
+        <Collapse items={items}
+        />
       </div>
     </Col>
   );

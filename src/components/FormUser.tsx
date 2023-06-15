@@ -16,12 +16,13 @@ const FormUser = ({ title, handleClick }: IFormProps) => {
   return (
     <Form
       name="basic"
+      layout="horizontal"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
-      style={{ maxWidth: '900px' }}
       initialValues={{ remember: true }}
       onFinish={onFinishFailed}
       autoComplete="off"
+      style={{ margin: '40px 20px' }}
     >
       <Form.Item
         label="Email"

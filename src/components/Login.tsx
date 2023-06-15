@@ -19,7 +19,6 @@ const Login = () => {
           token: user.refreshToken,
           id: user.uid
         }))
-        // alert("You have successfully LOGIN TO FIREBASE!")
         navigate('/home', { replace: true });
       })
       .catch((error) => {

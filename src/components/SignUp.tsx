@@ -19,7 +19,6 @@ const SignUp = () => {
           token: user.refreshToken,
           id: user.uid
         }))
-        // alert("You have successfully SIGNUP TO FIREBASE!")
         navigate('/', { replace: true });
       })
       .catch((error) => {
