@@ -21,3 +21,6 @@ export interface IRecipeProps {
     image: string;
   };
 }
+export interface IWrapper {
+  children?: React.ReactNode;
+}
