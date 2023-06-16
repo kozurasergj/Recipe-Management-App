@@ -1,32 +1,32 @@
+import { Button, Form, Input } from 'antd'
 import { useState } from 'react'
-import { IFormProps } from '../interfaces';
 
-import { Button, Form, Input } from 'antd';
+import { IFormProps } from '../interfaces'
 
 const FormUser = ({ title, handleClick }: IFormProps) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const onFinishFailed = () => {
-    handleClick(email, password);
-    setEmail('');
-    setPassword('');
-  };
+    handleClick(email, password)
+    setEmail('')
+    setPassword('')
+  }
 
   return (
     <Form
-      name="basic"
-      layout="horizontal"
+      name='basic'
+      layout='horizontal'
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       initialValues={{ remember: true }}
       onFinish={onFinishFailed}
-      autoComplete="off"
+      autoComplete='off'
       style={{ margin: '40px 20px' }}
     >
       <Form.Item
-        label="Email"
-        name="email"
+        label='Email'
+        name='email'
         rules={[
           {
             required: true,
@@ -39,16 +39,16 @@ const FormUser = ({ title, handleClick }: IFormProps) => {
         ]}
       >
         <Input
-          type="email"
-          placeholder="email"
+          type='email'
+          placeholder='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </Form.Item>
 
       <Form.Item
-        label="Password"
-        name="password"
+        label='Password'
+        name='password'
         rules={[
           {
             required: true,
@@ -56,13 +56,14 @@ const FormUser = ({ title, handleClick }: IFormProps) => {
           },
           {
             pattern: /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d]{6,15}$/,
-            message: 'Please enter a valid password (at least 6 characters long, containing at least one letter and one digit, and only containing English characters)',
-          },
+            message:
+              'Please enter a valid password (at least 6 characters long, containing at least one letter and one digit, and only containing English characters)'
+          }
         ]}
       >
         <Input.Password
-          type="password"
-          placeholder="password"
+          type='password'
+          placeholder='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -70,15 +71,15 @@ const FormUser = ({ title, handleClick }: IFormProps) => {
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button
-          type="primary"
-          htmlType="submit"
+          type='primary'
+          htmlType='submit'
           onClick={() => handleClick(email, password)}
         >
           {title}
         </Button>
       </Form.Item>
-    </Form >
+    </Form>
   )
 }
 
-export default FormUser;
+export default FormUser

@@ -1,23 +1,24 @@
-import { HeartFilled } from '@ant-design/icons';
-import { Col, Collapse, CollapseProps } from 'antd';
-import cn from 'classnames';
-import { setFavorite, removeFavorite } from '../store/slices/recipesSlice';
-import { IRecipeProps } from '../interfaces';
-import { useAppSelector, useAppDispatch } from '../hooks/useRedux';
+import { HeartFilled } from '@ant-design/icons'
+import { Col, Collapse, CollapseProps } from 'antd'
+import cn from 'classnames'
+
+import { useAppDispatch, useAppSelector } from '../hooks/useRedux'
+import { IRecipeProps } from '../interfaces'
+import { removeFavorite, setFavorite } from '../store/slices/recipesSlice'
 
 const Recipe = ({ recipe }: IRecipeProps) => {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
-  const favorite = useAppSelector((state) => state.allRecipes.favorite);
-  const isFavorite = favorite.some((favoriteItem) => favoriteItem.id === recipe.id);
+  const favorite = useAppSelector((state) => state.allRecipes.favorite)
+  const isFavorite = favorite.some((favoriteItem) => favoriteItem.id === recipe.id)
 
   const handleLike = () => {
     if (isFavorite) {
-      dispatch(removeFavorite({ id: recipe.id }));
+      dispatch(removeFavorite({ id: recipe.id }))
     } else {
-      dispatch(setFavorite({ id: recipe.id }));
+      dispatch(setFavorite({ id: recipe.id }))
     }
-  };
+  }
 
   const items: CollapseProps['items'] = [
     {
@@ -36,7 +37,7 @@ const Recipe = ({ recipe }: IRecipeProps) => {
         </>
       )
     }
-  ];
+  ]
 
   return (
     <Col
@@ -45,10 +46,9 @@ const Recipe = ({ recipe }: IRecipeProps) => {
       sm={20} // Takes half width on small screens
       md={10} // Takes one-third width on medium screens
       lg={7} // Takes one-fourth width on large screens
-      xl={7} 
-
+      xl={7}
       style={{
-        boxShadow: '4px 4px 15px rgba(56, 56, 56, 0.6)',
+        boxShadow: '4px 4px 15px rgba(56, 56, 56, 0.6)'
       }}
     >
       <div
@@ -58,7 +58,7 @@ const Recipe = ({ recipe }: IRecipeProps) => {
           flexDirection: 'column',
           gap: '30px'
         }}
-        className={cn('card',isFavorite && 'favorite')}
+        className={cn('card', isFavorite && 'favorite')}
       >
         <h2 style={{ textAlign: 'center' }}>{recipe.title}</h2>
         <button
@@ -72,17 +72,19 @@ const Recipe = ({ recipe }: IRecipeProps) => {
           onClick={handleLike}
         >
           {isFavorite ? (
-            <HeartFilled className='heart-checked' style={{ color: 'red', fontSize: '40px' }} />
+            <HeartFilled
+              className='heart-checked'
+              style={{ color: 'red', fontSize: '40px' }}
+            />
           ) : (
             <HeartFilled style={{ color: 'rgb(21, 9, 70)', fontSize: '30px' }} />
           )}
         </button>
         <img src={recipe.image} alt='dish' className='img' />
-        <Collapse items={items}
-        />
+        <Collapse items={items} />
       </div>
     </Col>
-  );
-};
+  )
+}
 
-export default Recipe;
+export default Recipe

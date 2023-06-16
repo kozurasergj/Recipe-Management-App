@@ -21,11 +21,6 @@ img {
   object-fit: cover;
 }
 
-.template {
-  color: rgb(21, 9, 70);
-  box-shadow: 5px 5px 5px rgb(100, 100, 100);
-}
-
 .favorite {
   color: red;
   background-color: #ffc9c7a5;
