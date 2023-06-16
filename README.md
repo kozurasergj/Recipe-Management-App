@@ -1,21 +1,4 @@
-#Hello
-
-I have developed a recipe management web app with the following features:
-
-User Registration and Authentication:
-
-Users can create an account and log in to the application.
-Recipe Browsing and Favorites:
-
-Users can browse through a collection of recipes.
-They can add recipes to their favorites for quick access.
-Dish Visualization and Ingredient Details:
-
-Users can view the visual representation of each dish.
-They can also see the list of required ingredients for each recipe.
-
-
-Hello,
+# Hello 🚀🚀🚀
 
 I have developed a recipe management web app with the following features:
 
